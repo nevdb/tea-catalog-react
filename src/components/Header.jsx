@@ -1,10 +1,13 @@
-import { useRef } from "react";
+import { useRef, useContext } from "react";
 import teaTime from "../assets/tea-time.png";
 import CartModal from "./CartModal";
+import { CartContext } from "./store/shopping-card-context";
 
-export default function Header({ cart, onUpdateCartItemQuantity }) {
+export default function Header() {
   const modal = useRef();
-  const cartQuantity = cart.items.length;
+  const { items } = useContext(CartContext);
+
+  const cartQuantity = items.length;
 
   function handleOpenCartClick() {
     modal.current.open();
@@ -31,13 +34,7 @@ export default function Header({ cart, onUpdateCartItemQuantity }) {
 
   return (
     <>
-      <CartModal
-        ref={modal}
-        cartItems={cart.items}
-        onUpdateCartItemQuantity={onUpdateCartItemQuantity}
-        title="Your Cart"
-        actions={modalActions}
-      />
+      <CartModal ref={modal} title="Your Cart" actions={modalActions} />
       <header className="flex justify-between items-center py-12">
         <div className="flex items-center">
           <img src={teaTime} alt="Tea time logo" className="w-20 " />
