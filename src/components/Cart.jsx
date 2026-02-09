@@ -1,5 +1,11 @@
-export default function Cart({ items, onUpdateItemQuantity }) {
-  const totalPrice = items.reduce(
+import { useContext } from "react";
+
+import { CartContext } from "./store/shopping-card-context";
+
+export default function Cart({ onUpdateItemQuantity }) {
+  const cartCtx = useContext(CartContext);
+
+  const totalPrice = cartCtx.items.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0,
   );
@@ -7,10 +13,10 @@ export default function Cart({ items, onUpdateItemQuantity }) {
 
   return (
     <div id="cart">
-      {items.length === 0 && <p>No items in cart!</p>}
-      {items.length > 0 && (
+      {cartCtx.items.length === 0 && <p>No items in cart!</p>}
+      {cartCtx.items.length > 0 && (
         <ul id="cart-items" className="list-none my-4 p-0 flex flex-col gap-2">
-          {items.map((item) => {
+          {cartCtx.items.map((item) => {
             const formattedPrice = `$${item.price.toFixed(2)}`;
 
             return (

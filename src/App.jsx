@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Catalog from "./components/Catalog";
 import { DUMMY_PRODUCTS } from "./dummy-products";
 import Product from "./components/Product";
+import { CartContext } from "./components/store/shopping-card-context";
 
 function App() {
   const [shoppingCart, setShoppingCart] = useState({
@@ -68,17 +69,19 @@ function App() {
 
   return (
     <>
-      <Header
-        cart={shoppingCart}
-        onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
-      />
-      <Catalog>
-        {DUMMY_PRODUCTS.map((product) => (
-          <li key={product.id}>
-            <Product {...product} onAddToCart={handleAddItemToCart} />
-          </li>
-        ))}
-      </Catalog>
+      <CartContext.Provider value={{ items: [] }}>
+        <Header
+          cart={shoppingCart}
+          onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
+        />
+        <Catalog>
+          {DUMMY_PRODUCTS.map((product) => (
+            <li key={product.id}>
+              <Product {...product} onAddToCart={handleAddItemToCart} />
+            </li>
+          ))}
+        </Catalog>
+      </CartContext.Provider>
     </>
   );
 }
