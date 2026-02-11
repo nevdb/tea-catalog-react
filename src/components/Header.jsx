@@ -1,7 +1,7 @@
 import { useRef, useContext } from "react";
 import teaTime from "../assets/tea-time.png";
 import CartModal from "./CartModal";
-import { CartContext } from "./store/shopping-card-context";
+import { CartContext } from "../store/shopping-card-context";
 
 export default function Header() {
   const modal = useRef();

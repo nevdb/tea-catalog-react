@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { CartContext } from "./store/shopping-card-context";
+import { CartContext } from "../store/shopping-card-context";
 
 export default function Product({ id, image, title, price, description }) {
   const { addItemToCart } = useContext(CartContext);
