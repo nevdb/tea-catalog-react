@@ -1,25 +1,23 @@
 import "./App.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Header from "./components/Header";
-import Catalog from "./components/Catalog";
-import { DUMMY_PRODUCTS } from "./dummy-products";
-import Product from "./components/Product";
-import CartContextProvider from "./store/shopping-card-context";
+import Home from "./pages/Home";
+import Products from "./pages/Products";
+import RootLayout from "./pages/Root";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    children: [
+      { path: "/", element: <Home /> },
+      { path: "/products", element: <Products /> },
+    ],
+  },
+]);
 
 function App() {
-  return (
-    <>
-      <CartContextProvider>
-        <Header />
-        <Catalog>
-          {DUMMY_PRODUCTS.map((product) => (
-            <li key={product.id}>
-              <Product {...product} />
-            </li>
-          ))}
-        </Catalog>
-      </CartContextProvider>
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
