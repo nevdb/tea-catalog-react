@@ -4,20 +4,27 @@ import Catalog from "../components/Catalog";
 import { DUMMY_PRODUCTS } from "../dummy-products";
 import Product from "../components/Product";
 import CartContextProvider from "../store/shopping-card-context";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-function App() {
+function HomePage() {
+  const navigate = useNavigate();
+
+  function navigateHandler() {
+    navigate("/products");
+  }
+
   return (
     <>
-      <CartContextProvider>
-        <Header />
-        <h1>Home page</h1>
-        <p>
-          Go to <Link to="/products"> the list of products</Link>
-        </p>
-      </CartContextProvider>
+      <Header />
+      <h1>Home page</h1>
+      <p>
+        Go to <Link to="/products"> the list of products</Link>
+      </p>
+      <p>
+        <button onClick={navigateHandler}>Navigate</button>
+      </p>
     </>
   );
 }
 
-export default App;
+export default HomePage;
