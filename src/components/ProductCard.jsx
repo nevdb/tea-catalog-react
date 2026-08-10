@@ -1,8 +1,9 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 import { CartContext } from "../store/shopping-card-context";
 
-export default function Product({ id, image, title, price, description }) {
+export default function ProductCard({ id, image, title, price, description }) {
   const { addItemToCart } = useContext(CartContext);
 
   return (
@@ -18,10 +19,13 @@ export default function Product({ id, image, title, price, description }) {
         <p className="text-base text-amber-500 m-0">€{price}</p>
         <p className="text-amber-950">{description}</p>
       </div>
-      <p className="text-right">
+      <p className="text-right ">
+        <button className="bg-lime-800 hover:bg-lime-600 text-lime-100 border-0 rounded-md py-2 px-4 text-base cursor-pointer text-current no-underline">
+          <Link to={`/products/${id}`}>See details</Link>
+        </button>
         <button
           onClick={() => addItemToCart(id)}
-          className="w- bg-lime-800 hover:bg-lime-600 text-lime-100 border-0 rounded-md py-2 px-4 text-base cursor-pointer"
+          className="bg-lime-800 hover:bg-lime-600 text-lime-100 border-0 rounded-md py-2 px-4 text-base cursor-pointer"
         >
           Add to Cart
         </button>

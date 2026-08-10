@@ -2,7 +2,7 @@ import "../App.css";
 import Header from "../components/Header";
 import Catalog from "../components/Catalog";
 import { DUMMY_PRODUCTS } from "../dummy-products";
-import Product from "../components/Product";
+import Product from "../components/ProductCard";
 import CartContextProvider from "../store/shopping-card-context";
 
 function App() {
